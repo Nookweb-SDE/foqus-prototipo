@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2F3A3F" />
+    <title>FOQUS · Gestão de Desempenho</title>
+    <script>
+      // O tema guardado na sessão (mock/persistencia.ts e mock/sessao.tsx) entra antes do bundle: recarregar no
+      // escuro não pisca a página clara. A sessão desta aba primeiro, depois a do navegador, como na carga do app. Só o
+      // registro da versão de agora: o de outra versão o app descarta e apaga na carga, e o tema dele pintava a página
+      // até o bundle chegar. VERSAO_DADOS é a de mock/persistencia.ts, e as duas andam juntas: subiu lá, sobe aqui
+      try {
+        var VERSAO_DADOS = 4
+        var registro = JSON.parse(sessionStorage.getItem('foqus-prototipo:sessao') || localStorage.getItem('foqus-prototipo:sessao') || 'null')
+        if (registro && registro.v === VERSAO_DADOS) {
+          if (registro.escuro === true) document.documentElement.classList.add('dark')
+          if (registro.paleta === 'terracota') document.documentElement.setAttribute('data-paleta', 'terracota')
+        }
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/foqus-prototipo/assets/index-CG3SbqFw.js"></script>
+    <link rel="stylesheet" crossorigin href="/foqus-prototipo/assets/index-Cbj4C8mW.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
